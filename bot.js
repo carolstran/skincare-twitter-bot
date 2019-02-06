@@ -12,21 +12,21 @@ const generateTweetText = () => {
   return randomTip.tip;
 };
 
-// TODO: Set interval on tweets so it acts like a real bot
-// setInterval(() => {
-//   generateTweetText(), 1000 * 60 * 60 * 24;
-// });
-
-bot.post(
-  "statuses/update",
-  {
-    status: generateTweetText()
-  },
-  (err, data, response) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(`${data.text} tweeted!`);
+const postTweet = () => {
+  return bot.post(
+    "statuses/update",
+    {
+      status: generateTweetText()
+    },
+    (err, data, response) => {
+      if (err) {
+        console.log(err.message);
+      } else {
+        console.log(`${data.text} tweeted!`);
+      }
     }
-  }
-);
+  );
+};
+
+// Tweets every 12 hours
+setInterval(postTweet, 1000 * 60 * 60 * 12);
