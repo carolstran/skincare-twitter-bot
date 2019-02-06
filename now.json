@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "skincare-bot",
+  "alias": "skincare-bot",
+  "builds": [
+    {
+      "src": "bot.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "bot.js"
+    }
+  ]
+}
